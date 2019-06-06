@@ -1,5 +1,6 @@
 package com.project.demo.web;
 
+import com.google.gson.JsonObject;
 import com.project.demo.service.impl.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,13 +14,19 @@ public class FileController {
     private FileService fileService;
     @PostMapping("save")
     @ResponseBody
-    public String save(Integer UserId){
+    public String save(Integer userId,Integer groupId,String type,String url){
         try {
-           // fileService.save(UserId,GroupId,type,Url);
-            return "success";
+            fileService.save(userId,groupId,type,url);
+            JsonObject json = new JsonObject();
+            json.addProperty("msg","success");
+            return json.toString();
+            //return "success";
         }catch (RuntimeException e){
             e.printStackTrace();
-            return "404";
+            JsonObject json = new JsonObject();
+            json.addProperty("msg","fail");
+            return json.toString();
+            //return "404";
         }
     }
 }
