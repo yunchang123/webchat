@@ -7,16 +7,16 @@ import lombok.ToString;
 @ToString
 public class LoginForm {
 
-    private String nickname;
+    private String email;
 
     private String password;
 
-    public String getNickname() {
-        return nickname;
+    public String getEmail() {
+        return email;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -30,7 +30,7 @@ public class LoginForm {
     @Override
     public String toString() {
         return "LoginForm{" +
-                "nickname='" + nickname + '\'' +
+                "email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

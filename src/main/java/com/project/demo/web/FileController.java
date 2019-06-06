@@ -18,13 +18,14 @@ public class FileController {
         try {
             fileService.save(userId,groupId,type,url);
             JsonObject json = new JsonObject();
-            json.addProperty("msg","success");
+            json.addProperty("state","success");
             return json.toString();
             //return "success";
         }catch (RuntimeException e){
             e.printStackTrace();
             JsonObject json = new JsonObject();
-            json.addProperty("msg","fail");
+            json.addProperty("state","fail");
+            json.addProperty("msg","发送失败");
             return json.toString();
             //return "404";
         }
