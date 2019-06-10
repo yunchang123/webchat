@@ -1,4 +1,5 @@
-package com.project.demo.service.impl;
+
+package com.project.demo.service;
 
 import com.project.demo.dal.entity.User;
 

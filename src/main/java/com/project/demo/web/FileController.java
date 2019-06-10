@@ -1,7 +1,7 @@
 package com.project.demo.web;
 
 import com.google.gson.JsonObject;
-import com.project.demo.service.impl.FileService;
+import com.project.demo.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;

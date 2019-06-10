@@ -17,6 +17,15 @@ public class Message {
     private String content;
 
     private Date time;
+    private String type;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public int getMessageId() {
         return messageId;
@@ -66,6 +75,7 @@ public class Message {
                 ", groupId=" + groupId +
                 ", content='" + content + '\'' +
                 ", time=" + time +
+                ", type='" + type + '\'' +
                 '}';
     }
 }

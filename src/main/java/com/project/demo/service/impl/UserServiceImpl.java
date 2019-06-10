@@ -1,7 +1,8 @@
 package com.project.demo.service.impl;
 
+import com.project.demo.dal.UserRepo;
 import com.project.demo.dal.entity.User;
-import com.project.demo.dal.entity.UserRepo;
+import com.project.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
