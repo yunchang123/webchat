@@ -1,7 +1,7 @@
 package com.project.demo.service.impl;
 
-import com.project.demo.dal.UserRepo;
 import com.project.demo.dal.entity.User;
+import com.project.demo.dal.UserRepo;
 import com.project.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,8 +27,8 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    public User login(String nickname, String password) {
-        User user = userRepo.findByNicknameAndPassword(nickname,password);
+    public User login(String email, String password) {
+        User user = userRepo.findByEmailAndPassword(email,password);
         if(user==null){
             throw new RuntimeException("USER_NOT_FOUND");
         }

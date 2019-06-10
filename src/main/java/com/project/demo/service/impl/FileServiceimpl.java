@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 public class FileServiceimpl implements FileService {
     @Autowired
     private FileRepo fileRepo;
-
     @Override
     public void save(Integer userId, Integer groupId, String type, String url) {
         Message message = new Message();
