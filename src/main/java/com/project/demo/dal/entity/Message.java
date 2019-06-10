@@ -16,46 +16,66 @@ public class Message {
 
     private String content;
 
+    private String type;
+
     private Date time;
 
     public int getMessageId() {
+
         return messageId;
     }
 
     public void setMessageId(int messageId) {
+
         this.messageId = messageId;
     }
 
     public int getUserId() {
+
         return userId;
     }
 
     public void setUserId(int userId) {
+
         this.userId = userId;
     }
 
     public int getGroupId() {
+
         return groupId;
     }
 
     public void setGroupId(int groupId) {
+
         this.groupId = groupId;
     }
 
     public String getContent() {
+
         return content;
     }
 
     public void setContent(String content) {
+
         this.content = content;
     }
 
     public Date getTime() {
+
         return time;
     }
 
     public void setTime(Date time) {
+
         this.time = time;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     @Override
@@ -65,6 +85,7 @@ public class Message {
                 ", userId=" + userId +
                 ", groupId=" + groupId +
                 ", content='" + content + '\'' +
+                ", type='" + type + '\'' +
                 ", time=" + time +
                 '}';
     }

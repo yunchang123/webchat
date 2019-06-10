@@ -4,7 +4,6 @@ import com.project.demo.dal.entity.User;
 import com.project.demo.dal.entity.UserRepo;
 import com.project.demo.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
