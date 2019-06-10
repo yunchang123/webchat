@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 @Controller
 public class FileController {
@@ -33,26 +36,31 @@ public class FileController {
             json.addProperty("state","fail");
             json.addProperty("msg","发送失败");
             return json.toString();
-            //return "404";
         }
     }
     @PostMapping("ss")
     @ResponseBody
     public String ss(@RequestParam("file") MultipartFile file){
         try {
-            String path = this.getClass().getResource("/").getPath();
             String fileName = file.getName();
-            System.out.println(path+"    "+fileName);
             String endpoint = "oss-cn-shenzhen.aliyuncs.com";
             String accessKeyId = "LTAIowgddTtjQafq";
             String accessKeySecret = "YLMAwAlM04Nb8KvLCgPcK086tlAQeG";
             // 创建OSSClient实例。
             OSSClient ossClient = new OSSClient(endpoint, accessKeyId, accessKeySecret);
-            ossClient.putObject("tto", fileName, new File(path));
-            //file.transferTo(new File(path+fileName));
+            File toFile = null;
+            if(file.equals("")||file.getSize()<=0){
+                file = null;
+            }else {
+                InputStream ins = null;
+                ins = file.getInputStream();
+                toFile = new File(file.getOriginalFilename());
+                inputStreamToFile(ins, toFile);
+                ins.close();
+            }
+            ossClient.putObject("tto", fileName,toFile);
             // 关闭OSSClient。
             ossClient.shutdown();
-
             JsonObject json = new JsonObject();
             json.addProperty("state","success");
             return json.toString();
@@ -64,12 +72,19 @@ public class FileController {
             return json.toString();
         }
     }
-//    /*@PostMapping("tourl")
-//    @ResponseBody
-//    public String tourl(String type){
-//
-//
-//        return "";
-//    }*/
+    public static void inputStreamToFile(InputStream ins, File file) {
+        try {
+            OutputStream os = new FileOutputStream(file);
+            int bytesRead = 0;
+            byte[] buffer = new byte[8192];
+            while ((bytesRead = ins.read(buffer, 0, 8192)) != -1) {
+                os.write(buffer, 0, bytesRead);
+            }
+            os.close();
+            ins.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }
