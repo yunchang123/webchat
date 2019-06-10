@@ -1,8 +1,8 @@
 package com.project.demo.web;
 
 import com.project.demo.dal.entity.User;
-import com.project.demo.dal.entity.UserRepo;
-import com.project.demo.service.impl.UserService;
+import com.project.demo.dal.UserRepo;
+import com.project.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.JsonObject;
 
 import javax.servlet.http.HttpSession;
-import java.util.Collections;
 import java.util.Optional;
 
 @Controller

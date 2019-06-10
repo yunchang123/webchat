@@ -1,9 +1,8 @@
 package com.project.demo.web;
 
 import com.google.gson.JsonObject;
-import com.project.demo.comon.AppConstants;
 import com.project.demo.dal.entity.User;
-import com.project.demo.service.impl.UserService;
+import com.project.demo.service.UserService;
 import com.project.demo.web.form.LoginForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

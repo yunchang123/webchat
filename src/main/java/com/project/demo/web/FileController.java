@@ -3,7 +3,7 @@ package com.project.demo.web;
 import com.aliyun.oss.OSSClient;
 import com.google.gson.JsonObject;
 
-import com.project.demo.service.impl.FileService;
+import com.project.demo.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.util.UUID;
 
 @Controller
 public class FileController {
@@ -43,20 +42,21 @@ public class FileController {
         try {
             String path = this.getClass().getResource("/").getPath();
             String fileName = file.getName();
+            System.out.println(path+"    "+fileName);
             String endpoint = "oss-cn-shenzhen.aliyuncs.com";
             String accessKeyId = "LTAIowgddTtjQafq";
             String accessKeySecret = "YLMAwAlM04Nb8KvLCgPcK086tlAQeG";
             // 创建OSSClient实例。
             OSSClient ossClient = new OSSClient(endpoint, accessKeyId, accessKeySecret);
-            ossClient.putObject("tto", "fileName", new File(path));
-            file.transferTo(new File(path+fileName));
+            ossClient.putObject("tto", fileName, new File(path));
+            //file.transferTo(new File(path+fileName));
             // 关闭OSSClient。
             ossClient.shutdown();
 
             JsonObject json = new JsonObject();
             json.addProperty("state","success");
             return json.toString();
-        }catch (RuntimeException e){
+        }catch (Exception e){
             e.printStackTrace();
             JsonObject json = new JsonObject();
             json.addProperty("state","fail");
