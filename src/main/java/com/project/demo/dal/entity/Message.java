@@ -16,9 +16,9 @@ public class Message {
 
     private String content;
 
+    private Date time;
     private String type;
 
-    private Date time;
 
     public int getMessageId() {
 
@@ -87,6 +87,7 @@ public class Message {
                 ", content='" + content + '\'' +
                 ", type='" + type + '\'' +
                 ", time=" + time +
+                ", type='" + type + '\'' +
                 '}';
     }
 }

@@ -3,8 +3,8 @@ package com.project.demo.dal.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Group_user")
-public class Group_user {
+@Table(name="GroupUser")
+public class GroupUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
@@ -29,7 +29,7 @@ public class Group_user {
 
     @Override
     public String toString() {
-        return "Group_user{" +
+        return "GroupUser{" +
                 "userId=" + userId +
                 ", groupId=" + groupId +
                 '}';
