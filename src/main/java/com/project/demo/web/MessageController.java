@@ -19,4 +19,10 @@ public class MessageController {
         System.out.println("userid   "+userId);
         return messageService.getMessageInfo(userId).toString();
     }
+
+    @RequestMapping("newchat")
+    public String newPrivateChat(Integer userId1,Integer userId2)
+    {
+        return messageService.newPrivateChat(userId1,userId2).toString();
+    }
 }
