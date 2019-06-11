@@ -48,4 +48,14 @@ public class MessageServiceImpl implements MessageService {
        return array;
 
     }
+
+    @Override
+    public void newPrivateChat(Integer userId1,Integer userId2) {
+
+    }
+
+    @Override
+    public void newPublicChat() {
+
+    }
 }
