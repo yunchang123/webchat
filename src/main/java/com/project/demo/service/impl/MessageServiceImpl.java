@@ -51,7 +51,10 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public void newPrivateChat(Integer userId1,Integer userId2) {
-
+        Group newGroup = new Group();
+        Group group = groupRepo.save(newGroup);
+        System.out.println("group 新建id:"+group.getGroupId());
+        
     }
 
     @Override
