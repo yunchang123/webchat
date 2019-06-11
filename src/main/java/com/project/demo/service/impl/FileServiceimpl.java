@@ -11,12 +11,12 @@ public class FileServiceimpl implements FileService {
     @Autowired
     private FileRepo fileRepo;
     @Override
-    public void save(Integer userId, Integer groupId, String type, String url) {
+    public void save(Integer userId, Integer groupId, String type, String content) {
         Message message = new Message();
         message.setUserId(userId);
         message.setGroupId(groupId);
         message.setType(type);
-        message.setContent(url);
+        message.setContent(content);
         fileRepo.save(message);
     }
 }
