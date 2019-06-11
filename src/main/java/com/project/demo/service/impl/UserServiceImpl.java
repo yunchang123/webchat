@@ -29,6 +29,7 @@ public class UserServiceImpl implements UserService {
 
     public User login(String email, String password) {
         User user = userRepo.findByEmailAndPassword(email,password);
+        user.setVerified(true);
         if(user==null){
             throw new RuntimeException("USER_NOT_FOUND");
         }

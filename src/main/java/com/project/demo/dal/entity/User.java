@@ -1,6 +1,7 @@
 package com.project.demo.dal.entity;
 
 import javax.persistence.*;
+import java.util.Random;
 
 
 @Entity
@@ -16,13 +17,13 @@ public class User {
 
     private String password;
 
-    private String sex;
+    private String sex="private";
 
-    private String avatar;//头像
+    private String avatar= "rgb("+(int)(1+Math.random()*(255-1+1))+","+(int)(1+Math.random()*(255-1+1))+","+(int)(1+Math.random()*(255-1+1))+")";//头像
 
-    private String avatarType;//头像类型
+    private String avatarType="nzText";//头像类型
 
-    private Boolean verified;//是否验证
+    private Boolean verified=false;//是否验证
 
     public int getUserId() {
         return userId;
