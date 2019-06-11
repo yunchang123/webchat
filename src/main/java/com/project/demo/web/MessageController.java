@@ -12,10 +12,10 @@ import javax.servlet.http.HttpSession;
 public class MessageController {
     @Autowired
     MessageService messageService;
-    @RequestMapping("/chat/list")
+    @RequestMapping("chat/list")
     public String getMessageInfo(HttpSession session)
     {
-        int userId = (Integer)session.getAttribute(AppConstants.USER_INFO_SK);
+        int userId = (Integer)session.getAttribute(AppConstants.USER_ID_SK);
         return messageService.getMessageInfo(userId).toString();
     }
 }

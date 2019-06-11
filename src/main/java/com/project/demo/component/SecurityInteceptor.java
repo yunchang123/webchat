@@ -12,7 +12,7 @@ public class SecurityInteceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        Object userInfo = request.getSession().getAttribute(AppConstants.USER_INFO_SK);
+        Object userInfo = request.getSession().getAttribute(AppConstants.USER_ID_SK);
         if(userInfo==null) {
             try {
                request.setAttribute("msg","该功能需要登录后使用，请您先登录");
