@@ -29,19 +29,28 @@ public class LoginController {
         //验证参数（用户名非空、长度大于6、不存在于数据库中、是邮箱或者手机号....）
         try {
             User user =  userService.login(form.getEmail(), form.getPassword());
+            if (user==null){
+                JsonObject json = new JsonObject();
+                json.addProperty("state","fail");
+                json.addProperty("msg","用户不存在或密码不正确");
+                return json.toString();
+            }
+            if(user.getVerified()==false){
+                JsonObject json = new JsonObject();
+                json.addProperty("state","fail");
+                json.addProperty("msg","用户未通过验证");
+                return json.toString();
+            }
             session.setAttribute(AppConstants.USER_ID_SK,user.getUserId());
             JsonObject json = new JsonObject();
             json.addProperty("state","success");
             json.addProperty("msg","登录成功");
             return json.toString();
-
-        }catch (Exception e){
-            e.printStackTrace();
-            JsonObject json = new JsonObject();
-            json.addProperty("state","fail");
-            json.addProperty("msg","用户不存在或者密码不匹配");
-            return json.toString();
         }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
     @RequestMapping(value = "myinfo")
     @ResponseBody

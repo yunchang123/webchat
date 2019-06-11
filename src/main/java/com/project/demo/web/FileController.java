@@ -3,6 +3,7 @@ package com.project.demo.web;
 import com.aliyun.oss.OSSClient;
 import com.google.gson.JsonObject;
 
+import com.project.demo.dal.entity.Message;
 import com.project.demo.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.UUID;
 
 @Controller
 public class FileController {
@@ -23,13 +25,12 @@ public class FileController {
     private FileService fileService;
     @PostMapping("save")
     @ResponseBody
-    public String save(Integer userId,Integer groupId,String type,String url){
+    public String save(Integer userId,Integer groupId,String type,String content){
         try {
-            fileService.save(userId,groupId,type,url);
+            fileService.save(userId,groupId,type,content);
             JsonObject json = new JsonObject();
             json.addProperty("state","success");
             return json.toString();
-            //return "success";
         }catch (RuntimeException e){
             e.printStackTrace();
             JsonObject json = new JsonObject();
@@ -38,11 +39,12 @@ public class FileController {
             return json.toString();
         }
     }
-    @PostMapping("ss")
+    @PostMapping("upload")
     @ResponseBody
-    public String ss(@RequestParam("file") MultipartFile file){
+    public String upload(@RequestParam("file") MultipartFile file,String type){
         try {
-            String fileName = file.getName();
+            System.out.println(type);
+            String fileName = UUID.randomUUID().toString()+file.getOriginalFilename().replaceAll(" ", "");
             String endpoint = "oss-cn-shenzhen.aliyuncs.com";
             String accessKeyId = "LTAIowgddTtjQafq";
             String accessKeySecret = "YLMAwAlM04Nb8KvLCgPcK086tlAQeG";
@@ -63,6 +65,8 @@ public class FileController {
             ossClient.shutdown();
             JsonObject json = new JsonObject();
             json.addProperty("state","success");
+            json.addProperty("filename",fileName);
+
             return json.toString();
         }catch (Exception e){
             e.printStackTrace();
