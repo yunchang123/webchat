@@ -1,29 +1,40 @@
 package com.project.demo.web;
 
+import com.google.gson.JsonObject;
 import com.project.demo.comon.AppConstants;
 import com.project.demo.service.MessageService;
+import com.project.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 @RestController
 public class MessageController {
 
     @Autowired
     MessageService messageService;
+    @Autowired
+    UserService userService;
     @GetMapping("/chat/list")
     public String getMessageInfo(HttpSession session)
     {
-        int userId = (Integer)session.getAttribute(AppConstants.USER_ID_SK);
-        System.out.println("userid   "+userId);
-        System.out.println(messageService.getMessageInfo(userId).toString());
-        return messageService.getMessageInfo(userId).toString();
+        JsonObject object = new JsonObject();
+        try {
+            int userId = (Integer) session.getAttribute(AppConstants.USER_ID_SK);
+            System.out.println("userid   "+userId);
+            System.out.println(messageService.getMessageInfo(userId).toString());
+            return messageService.getMessageInfo(userId).toString();
+        }
+        catch (Exception ex)
+        {
+            object.addProperty("state","fail");
+            return object.toString();
+        }
+
     }
 
     @RequestMapping("newchat")
@@ -52,5 +63,11 @@ public class MessageController {
     public String newPublicChat(String groupName, Integer[] users)
     {
         return messageService.newPublicChat(groupName,users).toString();
+    }
+
+    @RequestMapping("userlist")
+    public String userList()
+    {
+        return userService.userList().toString();
     }
 }

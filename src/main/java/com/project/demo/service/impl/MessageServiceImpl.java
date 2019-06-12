@@ -114,6 +114,7 @@ public class MessageServiceImpl implements MessageService {
         try {
             Group newGroup = new Group();
             newGroup.setName(groupName);
+            newGroup.setChatType("public");
             Group group = groupRepo.save(newGroup);
             Integer groupId = group.getGroupId();
             for(Integer userId:users)
