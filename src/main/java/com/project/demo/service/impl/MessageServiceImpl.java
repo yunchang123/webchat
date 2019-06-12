@@ -48,4 +48,40 @@ public class MessageServiceImpl implements MessageService {
        return array;
 
     }
+
+    @Override
+    public JsonObject newPrivateChat(Integer userId1,Integer userId2) {
+        try {
+            Group newGroup = new Group();
+            Group group = groupRepo.save(newGroup);
+            System.out.println("group 新建id:" + group.getGroupId());
+
+            GroupUser groupUser1 = new GroupUser();
+            GroupUser groupUser2 = new GroupUser();
+            groupUser1.setGroupId(group.getGroupId());
+            groupUser1.setUserId(userId1);
+            groupUser2.setGroupId(group.getGroupId());
+            groupUser2.setUserId(userId2);
+            groupUserRepo.save(groupUser1);
+            groupUserRepo.save(groupUser2);
+            JsonObject object = new JsonObject();
+            object.addProperty("state","success");
+            return object;
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+            JsonObject object = new JsonObject();
+            object.addProperty("state","success");
+            return object;
+
+        }
+
+
+    }
+
+    @Override
+    public void newPublicChat() {
+
+    }
 }

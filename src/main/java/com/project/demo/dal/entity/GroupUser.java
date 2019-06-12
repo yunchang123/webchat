@@ -7,9 +7,21 @@ import javax.persistence.*;
 public class GroupUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int groupUserId;
+
     private int userId;
 
     private int groupId;
+
+    public int getGroupUserId() {
+        return groupUserId;
+    }
+
+    public void setGroupUserId(int groupUserId) {
+        this.groupUserId = groupUserId;
+    }
+
+
 
     public int getUserId() {
         return userId;
@@ -30,7 +42,8 @@ public class GroupUser {
     @Override
     public String toString() {
         return "GroupUser{" +
-                "userId=" + userId +
+                "groupUserId=" + groupUserId +
+                ", userId=" + userId +
                 ", groupId=" + groupId +
                 '}';
     }

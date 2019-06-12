@@ -17,10 +17,12 @@ public class MessageController {
     {
         int userId = (Integer)request.getSession().getAttribute("userid");
         System.out.println("userid   "+userId);
-        System.out.println(messageService.getMessageInfo(userId).toString());
-        return "asdf";
-//        return messageService.getMessageInfo(userId).toString();
+        return messageService.getMessageInfo(userId).toString();
     }
 
-
+    @RequestMapping("newchat")
+    public String newPrivateChat(Integer userId1,Integer userId2)
+    {
+        return messageService.newPrivateChat(userId1,userId2).toString();
+    }
 }
