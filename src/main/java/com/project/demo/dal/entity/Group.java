@@ -12,9 +12,9 @@ public class Group {
 
     private String name;
 
-    private String avatar;//头像
+    private String avatar= "rgb("+(int)(1+Math.random()*(255-1+1))+","+(int)(1+Math.random()*(255-1+1))+","+(int)(1+Math.random()*(255-1+1))+")";//头像
 
-    private String avatarType;//头像类型
+    private String avatarType="nzText";//头像类型
 
     private String chatType;
 

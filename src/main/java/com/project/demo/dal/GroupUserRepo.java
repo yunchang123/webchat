@@ -7,4 +7,5 @@ import java.util.ArrayList;
 
 public interface GroupUserRepo extends JpaRepository<GroupUser,Integer> {
     ArrayList<GroupUser> findByUserId(Integer userId);
+    GroupUser findByGroupIdAndUserIdNot(Integer groupId,Integer userId);
 }
