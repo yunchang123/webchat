@@ -8,5 +8,5 @@ import java.util.ArrayList;
 public interface UserRepo extends JpaRepository<User,Integer> {
     User findByEmailAndPassword(String email,String password);
     User findByEmail(String email);
-    ArrayList<User> findByVerifiedNot(boolean verified);
+    ArrayList<User> findByVerifiedNotAndUserIdNot(boolean verified,Integer userId);
 }

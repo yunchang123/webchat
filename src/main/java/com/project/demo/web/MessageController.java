@@ -66,8 +66,9 @@ public class MessageController {
     }
 
     @RequestMapping("userlist")
-    public String userList()
+    public String userList(HttpSession session)
     {
-        return userService.userList().toString();
+        int userId = (Integer) session.getAttribute(AppConstants.USER_ID_SK);
+        return userService.userList(userId).toString();
     }
 }

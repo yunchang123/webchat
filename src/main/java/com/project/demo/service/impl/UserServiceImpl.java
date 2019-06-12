@@ -67,9 +67,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public JsonArray userList() {
+    public JsonArray userList(Integer userId) {
 
-        ArrayList<User>userList = userRepo.findByVerifiedNot(false);
+        ArrayList<User>userList = userRepo.findByVerifiedNotAndUserIdNot(false,userId);
         JsonArray array = new JsonArray();
         for(User user:userList)
         {
