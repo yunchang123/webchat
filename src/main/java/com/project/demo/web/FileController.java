@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Date;
 import java.util.UUID;
 
 @Controller
@@ -25,9 +26,9 @@ public class FileController {
     private FileService fileService;
     @PostMapping("save")
     @ResponseBody
-    public String save(Integer userId,Integer groupId,String type,String content){
+    public String save(Integer userId, Integer groupId, String type, String content, Date time){
         try {
-            fileService.save(userId,groupId,type,content);
+            fileService.save(userId,groupId,type,content,time);
             JsonObject json = new JsonObject();
             json.addProperty("state","success");
             return json.toString();
