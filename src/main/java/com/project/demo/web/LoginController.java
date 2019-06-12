@@ -62,6 +62,7 @@ public class LoginController {
             JsonObject json1 = new JsonObject();
             json.addProperty("state","success");
             json1.addProperty("userId",user1.get().getUserId());
+            json1.addProperty("email",user1.get().getEmail());
             json1.addProperty("nickname",user1.get().getNickname());
             json1.addProperty("avatar",user1.get().getAvatar());
             json1.addProperty("sex",user1.get().getSex());

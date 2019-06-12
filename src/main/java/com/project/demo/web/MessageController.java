@@ -17,6 +17,10 @@ public class MessageController {
     {
         int userId = (Integer)request.getSession().getAttribute("userid");
         System.out.println("userid   "+userId);
-        return messageService.getMessageInfo(userId).toString();
+        System.out.println(messageService.getMessageInfo(userId).toString());
+        return "asdf";
+//        return messageService.getMessageInfo(userId).toString();
     }
+
+
 }
