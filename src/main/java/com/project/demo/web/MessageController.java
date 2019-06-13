@@ -60,9 +60,9 @@ public class MessageController {
     }
 
     @RequestMapping("/newgroup")
-    public String newPublicChat(String groupName, Integer[] users)
+    public String newPublicChat(String groupName, Integer[] users,String avatar)
     {
-        return messageService.newPublicChat(groupName,users).toString();
+        return messageService.newPublicChat(groupName,users,avatar).toString();
     }
 
     @RequestMapping("userlist")

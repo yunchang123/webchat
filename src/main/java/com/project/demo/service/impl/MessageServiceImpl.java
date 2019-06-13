@@ -94,6 +94,7 @@ public class MessageServiceImpl implements MessageService {
             groupUserRepo.save(groupUser2);
             JsonObject object = new JsonObject();
             object.addProperty("state","success");
+            object.addProperty("groupId",group.getGroupId());
             return object;
         }
         catch (Exception ex)
@@ -109,12 +110,13 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public JsonObject newPublicChat(String groupName, Integer[] users) {
+    public JsonObject newPublicChat(String groupName, Integer[] users,String avatar) {
         JsonObject object = new JsonObject();
         try {
             Group newGroup = new Group();
             newGroup.setName(groupName);
             newGroup.setChatType("public");
+            newGroup.setAvatar(avatar);
             Group group = groupRepo.save(newGroup);
             Integer groupId = group.getGroupId();
             for(Integer userId:users)
@@ -126,6 +128,7 @@ public class MessageServiceImpl implements MessageService {
             }
 
             object.addProperty("state","success");
+            object.addProperty("groupId",groupId);
             return object;
         }catch (Exception ex)
         {

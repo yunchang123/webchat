@@ -11,7 +11,7 @@ public interface MessageService  {
 
     JsonObject newPrivateChat(Integer userId1, Integer userId2);
 
-    JsonObject newPublicChat(String groupName, Integer[] users);
+    JsonObject newPublicChat(String groupName, Integer[] users,String avatar);
 
     JsonObject sendMessage(Integer userId,Integer groupId,String content, String type,Date time);
 

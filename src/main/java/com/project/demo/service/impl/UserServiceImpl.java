@@ -76,6 +76,8 @@ public class UserServiceImpl implements UserService {
             JsonObject object = new JsonObject();
             object.addProperty("userId",user.getUserId());
             object.addProperty("nickname",user.getNickname());
+            object.addProperty("avatar",user.getAvatar());
+            object.addProperty("avatarType",user.getAvatarType());
             array.add(object);
         }
 
